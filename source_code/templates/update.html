@@ -1,0 +1,90 @@
+<!DOCTYPE html>	
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+  <title>Phone Book</title>
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/AdminLTE.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/_all-skins.min.css')}}">
+
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+  <div class="wrapper">
+    <header class="main-header">
+      <nav class="navbar navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a href="/" class="navbar-brand"><b>Phone</b>Book</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="content-wrapper">
+      <div class="container">  
+        <section class="content">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              	<center>
+	              	<h3 class="box-title">Update Phone Number</h3>
+	            </center>
+            </div>
+
+            <form class="form-horizontal" method="POST" action="/updatephone">
+            {% for row in data %}
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Name</label>
+
+                  <div class="col-sm-10">
+                    <input name="name" value="{{ row[1] }}" type="text" class="form-control" placeholder="Name" autocomplete="off" required>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Phone Number</label>
+
+                  <div class="col-sm-10">
+                    <input name="phone" value="{{ row[2] }}" type="text" class="form-control" placeholder="Phone Number" autocomplete="off" required>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Address</label>
+
+                  <div class="col-sm-10">
+                    <input name="address" value="{{ row[3] }}" type="text" class="form-control" placeholder="Address" autocomplete="off" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box-footer">
+                <a href="/"><button type="button" class="btn btn-default">Cancel</button></a>
+                <input name="update" type="submit" class="btn btn-info pull-right" value="Update">
+              </div>
+             {% endfor %}
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="main-footer">
+      <div class="container">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 0.1
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+  <script src="{{ url_for('static', filename='js/jquery-2.2.3.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/app.min.js')}}"></script>
+
+</body>
+</html>
