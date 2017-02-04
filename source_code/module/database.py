@@ -19,14 +19,13 @@ class Database:
                 cursor.execute("SELECT * FROM phone_book order by name asc")
             else: 
                 cursor.execute("SELECT * FROM phone_book where id = %s order by name asc", (id,))
-                
-                con.close()
-                
+
             return cursor.fetchall()
         except:
             return ()
-        
-
+        finally:
+            con.close()
+            
     def insert(self,data):
         con = Database.connect(self)
         cursor = con.cursor()
@@ -40,8 +39,8 @@ class Database:
             con.rollback()
             
             return False
-            
-        con.close()
+        finally:
+            con.close()
             
     def update(self, id, data):
         con = Database.connect(self)
@@ -56,8 +55,8 @@ class Database:
             con.rollback()
             
             return False
-        
-        con.close()
+        finally:
+            con.close()
         
     def delete(self, id):
         con = Database.connect(self)
@@ -72,5 +71,5 @@ class Database:
             con.rollback()
             
             return False
-        
-        con.close()
+        finally:
+            con.close()
