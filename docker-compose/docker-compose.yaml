@@ -4,8 +4,6 @@ services:
   crud-mysql:
     container_name: crud-mysql
     image: muhammadhanif/phonebook:mysql
-    ports:
-      - "3306:3306"
 
   crud-flask:
     container_name: crud-flask
