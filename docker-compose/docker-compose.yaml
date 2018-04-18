@@ -1,17 +1,17 @@
 version: '2'
 services:
 
-  crud-mysql:
-    container_name: crud-mysql
+  phonebook-mysql:
+    container_name: phonebook-mysql
     image: muhammadhanif/phonebook:mysql
 
-  crud-flask:
-    container_name: crud-flask
+  phonebook-flask:
+    container_name: phonebook-flask
     image: muhammadhanif/phonebook:flask
     ports:
       - "8181:8181"
     working_dir: /hnf/source_code
     command: python server.py
     links: 
-    - crud-mysql
+    - phonebook-mysql
 
