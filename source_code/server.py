@@ -15,7 +15,7 @@ db = Database()
 @app.route('/')
 def index():
     data = db.read(None)
-    
+
     return render_template('index.html', data = data)
 
 @app.route('/add/')
@@ -29,7 +29,7 @@ def addphone():
             flash("A new phone number has been added")
         else:
             flash("A new phone number can not be added")
-            
+
         return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
@@ -37,7 +37,7 @@ def addphone():
 @app.route('/update/<int:id>/')
 def update(id):
     data = db.read(id);
-    
+
     if len(data) == 0:
         return redirect(url_for('index'))
     else:
@@ -47,23 +47,23 @@ def update(id):
 @app.route('/updatephone', methods = ['POST'])
 def updatephone():
     if request.method == 'POST' and request.form['update']:
-        
+
         if db.update(session['update'], request.form):
             flash('A phone number has been updated')
-           
+
         else:
             flash('A phone number can not be updated')
-        
+
         session.pop('update', None)
-        
+
         return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
-    
+
 @app.route('/delete/<int:id>/')
 def delete(id):
     data = db.read(id);
-    
+
     if len(data) == 0:
         return redirect(url_for('index'))
     else:
@@ -73,15 +73,15 @@ def delete(id):
 @app.route('/deletephone', methods = ['POST'])
 def deletephone():
     if request.method == 'POST' and request.form['delete']:
-        
+
         if db.delete(session['delete']):
             flash('A phone number has been deleted')
-           
+
         else:
             flash('A phone number can not be deleted')
-        
+
         session.pop('delete', None)
-        
+
         return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
@@ -91,4 +91,4 @@ def page_not_found(error):
     return render_template('error.html')
 
 if __name__ == '__main__':
-    app.run(debug = True, port=8181, host="0.0.0.0")
+    app.run(port=8181, host="0.0.0.0")
