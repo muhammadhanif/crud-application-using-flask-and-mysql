@@ -27,4 +27,4 @@ docker-compose down --rmi all
 If you want to donate to this project, please contact us:
 
 - Email: moehammadhanif@gmail.com
-- Telegram: [t.me/hanifmu](https://t.me/hanifmu)
+- Telegram: [@hanifmu](https://t.me/hanifmu)
