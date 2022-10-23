@@ -43,13 +43,13 @@ class Database:
         finally:
             con.close()
 
-    def insert(self, data):
+    def insert(self, url, code):
         con = Database.connect(self)
         cursor = con.cursor()
 
         try:
             cursor.execute("INSERT INTO url_shortner(code,url) VALUES(%s, %s)",
-                           (data['code'], data['url'],))
+                           (code, url,))
             con.commit()
 
             return True

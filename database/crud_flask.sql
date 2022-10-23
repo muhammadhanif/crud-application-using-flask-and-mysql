@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `url_shortner` (
   `id` int(5) NOT NULL,
   `code` varchar(255) NOT NULL,
-  `url` varchar(512) NOT NULL
+  `url` varchar(512) NOT NULL, 
+  unique(code)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 --

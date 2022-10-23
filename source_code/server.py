@@ -3,7 +3,10 @@ Created on Jan 10, 2017
 
 @author: hanif
 '''
-import logging              
+import logging   
+import string
+import random
+
 from flask import Flask, flash, render_template, redirect, url_for, request, session
 from module.database import Database
 
@@ -18,12 +21,20 @@ def index():
 
     return render_template('index.html', data = data)
 
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
+
+'''
+This is the route for the short url, it will redirect to the original url, if the short url is not found, it will redirect to the 404 page
+'''
 @app.route('/r/<string:code>')
 def r(code):
     data = db.read_code(code)
-    #return repr(data)
-    return redirect(data[0][2], code=302)
+    if len(data) > 0 and len(data[0]) > 0:
+        return redirect(data[0][2], code=302)
+
+    return render_template('error.html')
 
 @app.route('/add/')
 def add():
@@ -32,7 +43,7 @@ def add():
 @app.route('/addshortcode', methods = ['POST', 'GET'])
 def addshortcode():
     if request.method == 'POST' and request.form['save']:
-        if db.insert(request.form):
+        if db.insert(request.form['url'], id_generator()):
             flash("A new Short Code has been added")
         else:
             flash("A new Short Code can not be added")
