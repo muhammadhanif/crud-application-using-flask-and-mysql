@@ -3,7 +3,7 @@ Created on Jan 10, 2017
 
 @author: hanif
 '''
-
+import logging              
 from flask import Flask, flash, render_template, redirect, url_for, request, session
 from module.database import Database
 
@@ -18,17 +18,24 @@ def index():
 
     return render_template('index.html', data = data)
 
+
+@app.route('/r/<string:code>')
+def r(code):
+    data = db.read_code(code)
+    #return repr(data)
+    return redirect(data[0][2], code=302)
+
 @app.route('/add/')
 def add():
     return render_template('add.html')
 
-@app.route('/addphone', methods = ['POST', 'GET'])
-def addphone():
+@app.route('/addshortcode', methods = ['POST', 'GET'])
+def addshortcode():
     if request.method == 'POST' and request.form['save']:
         if db.insert(request.form):
-            flash("A new phone number has been added")
+            flash("A new Short Code has been added")
         else:
-            flash("A new phone number can not be added")
+            flash("A new Short Code can not be added")
 
         return redirect(url_for('index'))
     else:
@@ -44,15 +51,15 @@ def update(id):
         session['update'] = id
         return render_template('update.html', data = data)
 
-@app.route('/updatephone', methods = ['POST'])
-def updatephone():
+@app.route('/updateshortcode', methods = ['POST'])
+def updateshortcode():
     if request.method == 'POST' and request.form['update']:
 
         if db.update(session['update'], request.form):
-            flash('A phone number has been updated')
+            flash('A Short Code has been updated')
 
         else:
-            flash('A phone number can not be updated')
+            flash('A Short Code can not be updated')
 
         session.pop('update', None)
 
@@ -70,15 +77,15 @@ def delete(id):
         session['delete'] = id
         return render_template('delete.html', data = data)
 
-@app.route('/deletephone', methods = ['POST'])
-def deletephone():
+@app.route('/deleteshortcode', methods = ['POST'])
+def deleteshortcode():
     if request.method == 'POST' and request.form['delete']:
 
         if db.delete(session['delete']):
-            flash('A phone number has been deleted')
+            flash('A Short Code has been deleted')
 
         else:
-            flash('A phone number can not be deleted')
+            flash('A Short Code can not be deleted')
 
         session.pop('delete', None)
 

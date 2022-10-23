@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   
-  <title>Phone Book</title>
+  <title>shortcode</title>
   
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/AdminLTE.min.css')}}">
@@ -21,7 +21,7 @@
       <nav class="navbar navbar-static-top">
         <div class="container">
           <div class="navbar-header">
-            <a href="/" class="navbar-brand"><b>Phone</b>Book</a>
+            <a href="/" class="navbar-brand"><b>Short</b>Codes</a>
           </div>
         </div>
       </nav>
@@ -44,19 +44,19 @@
               <a href="/add">
               	<center>
               		<button type="button" class="btn btn-primary btn-flat">
-              			<span class="glyphicon glyphicon-plus"></span> Add Phone Number
+              			<span class="glyphicon glyphicon-plus"></span> Add Short Code
               		</button>
               	</center>
               </a>
             </div>
 
             <div class="box-body">
-              <table id="dataphone" class="table table-bordered table-striped">
+              <table id="datashortcode" class="table table-bordered table-striped">
                 <thead align="center">
                   <tr>
-                    <th >Name</th>
-                    <th>Phone Number</th>
-                    <th>Address</th>
+                    <th>Short Code</th>
+                    <th>URL</th>
+                    <th>link</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -74,7 +74,7 @@
                       {% for row in data %}
                     <td>{{ row[1] }}</td>
                     <td>{{ row[2] }}</td>
-                    <td>{{ row[3] }}</td>
+                    <td><a href='/r/{{ row[1] }}'>/r/{{ row[1] }}</a></td>
                     <td align="center">
                       <a href="/update/{{ row[0]}}">
                         <button type="button" class="btn btn-sm btn-warning btn-flat" title="Update"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -112,7 +112,7 @@
 
   <script>
     $(function () {
-      $("#dataphone").DataTable();
+      $("#datashortcode").DataTable();
       
     });
   </script>

@@ -23,31 +23,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phone_book`
+-- Table structure for table `url_shortner`
 --
 
-CREATE TABLE IF NOT EXISTS `phone_book` (
+CREATE TABLE IF NOT EXISTS `url_shortner` (
   `id` int(5) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `address` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+  `code` varchar(255) NOT NULL,
+  `url` varchar(512) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `phone_book`
+-- Dumping data for table `url_shortner`
 --
 
-INSERT INTO `phone_book` (`id`, `name`, `phone`, `address`) VALUES
-(16, 'Muhammad Hanif', '085733492411', 'Lamongan');
+INSERT INTO `url_shortner` (`id`, `code`, `url`) VALUES
+(1, '3928', 'https://www.google.com');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `phone_book`
+-- Indexes for table `url_shortner`
 --
-ALTER TABLE `phone_book`
+ALTER TABLE `url_shortner`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -55,9 +54,9 @@ ALTER TABLE `phone_book`
 --
 
 --
--- AUTO_INCREMENT for table `phone_book`
+-- AUTO_INCREMENT for table `url_shortner`
 --
-ALTER TABLE `phone_book`
+ALTER TABLE `url_shortner`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

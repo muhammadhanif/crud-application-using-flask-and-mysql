@@ -14,7 +14,7 @@ A simple CRUD application using Flask and MySQL
 docker-compose up -d
 ```
 
-After executing, you will have 2 running cointainers on your Docker host: `phonebook-app` and `phonebook-mysql`. For accessing the web application, open your browser and go to http://your-docker-host-ip-address:8181
+After executing, you will have 2 running cointainers on your Docker host: `urlshortner-app` and `urlshortner-mysql`. For accessing the web application, open your browser and go to http://your-docker-host-ip-address:8181
 
 To destroy the containers, execute:
 

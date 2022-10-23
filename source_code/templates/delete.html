@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   
-  <title>Phone Book</title>
+  <title>Short Codes</title>
   
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/AdminLTE.min.css')}}">
@@ -20,7 +20,7 @@
       <nav class="navbar navbar-static-top">
         <div class="container">
           <div class="navbar-header">
-            <a href="/" class="navbar-brand"><b>Phone</b>Book</a>
+            <a href="/" class="navbar-brand"><b>Short</b>Codes</a>
           </div>
         </div>
       </nav>
@@ -32,11 +32,11 @@
           <div class="box box-info">
             <div class="box-header with-border">
             	<center>
-            		<h3 class="box-title">Delete Phone Number</h3>
+            		<h3 class="box-title">Delete Short Code</h3>
             	</center>
             </div>
 
-            <form class="form-horizontal" method="POST" action="/deletephone">
+            <form class="form-horizontal" method="POST" action="/deleteshortcode">
             {% for row in data %}
               <div class="box-body">
                 <div class="form-group">
@@ -48,10 +48,10 @@
                 </div>
                 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Phone Number</label>
+                  <label class="col-sm-2 control-label">Short Code</label>
 
                   <div class="col-sm-10">
-                    <input name="phone" value="{{ row[2] }}" type="text" class="form-control" disabled>
+                    <input name="shortcode" value="{{ row[2] }}" type="text" class="form-control" disabled>
                   </div>
                 </div>
                 

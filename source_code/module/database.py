@@ -9,9 +9,9 @@ import pymysql
 
 class Database:
     def connect(self):
-        # return pymysql.connect("phonebook-mysql", "dev", "dev", "crud_flask")
+        # return pymysql.connect("urlshortner-mysql", "dev", "dev", "crud_flask")
 
-        return pymysql.connect(host="phonebook-mysql", user="dev", password="dev", database="crud_flask", charset='utf8mb4')
+        return pymysql.connect(host="urlshortner-mysql", user="dev", password="dev", database="crud_flask", charset='utf8mb4')
 
     def read(self, id):
         con = Database.connect(self)
@@ -19,10 +19,23 @@ class Database:
 
         try:
             if id == None:
-                cursor.execute("SELECT * FROM phone_book order by name asc")
+                cursor.execute("SELECT * FROM url_shortner order by code asc")
             else:
                 cursor.execute(
-                    "SELECT * FROM phone_book where id = %s order by name asc", (id,))
+                    "SELECT * FROM url_shortner where id = %s order by code asc", (id,))
+
+            return cursor.fetchall()
+        except:
+            return ()
+        finally:
+            con.close()
+
+    def read_code(self, code):
+        con = Database.connect(self)
+        cursor = con.cursor()
+        try:
+            cursor.execute(
+                "SELECT * FROM url_shortner where code = %s order by code asc limit 1", (code,))
 
             return cursor.fetchall()
         except:
@@ -35,8 +48,8 @@ class Database:
         cursor = con.cursor()
 
         try:
-            cursor.execute("INSERT INTO phone_book(name,phone,address) VALUES(%s, %s, %s)",
-                           (data['name'], data['phone'], data['address'],))
+            cursor.execute("INSERT INTO url_shortner(code,url) VALUES(%s, %s)",
+                           (data['code'], data['url'],))
             con.commit()
 
             return True
@@ -52,8 +65,8 @@ class Database:
         cursor = con.cursor()
 
         try:
-            cursor.execute("UPDATE phone_book set name = %s, phone = %s, address = %s where id = %s",
-                           (data['name'], data['phone'], data['address'], id,))
+            cursor.execute("UPDATE url_shortner set code = %s, url = %s where id = %s",
+                           (data['code'], data['url'],  id,))
             con.commit()
 
             return True
@@ -69,7 +82,7 @@ class Database:
         cursor = con.cursor()
 
         try:
-            cursor.execute("DELETE FROM phone_book where id = %s", (id,))
+            cursor.execute("DELETE FROM url_shortner where id = %s", (id,))
             con.commit()
 
             return True
